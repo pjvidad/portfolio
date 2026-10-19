@@ -40,7 +40,7 @@ main{padding:0 var(--pad)}
 /* ---------- Home ---------- */
 .intro{max-width:24ch;margin:clamp(2.5rem,8vw,6rem) auto clamp(3rem,9vw,7rem);text-align:center;
   font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;letter-spacing:0}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
 .card{display:block}
 .thumb{overflow:hidden;background:#e7e0d0;aspect-ratio:5/4}
 .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -62,9 +62,22 @@ main{padding:0 var(--pad)}
 .meta{font-size:1.1rem}
 
 /* Gallery */
-.gallery{max-width:1600px;margin:0 auto;display:grid;gap:clamp(1rem,2.5vw,2rem)}
-.gallery img{width:100%}
-.gallery-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.5vw,2rem);align-items:start}
+.gallery{
+  max-width:1600px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(1rem,2.5vw,2rem);
+}
+.gallery > li{min-width:0}
+.gallery img{width:100%;height:auto}
+.gallery-row{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1rem,2.5vw,2rem);
+  align-items:start;
+}
+.gallery-row img{width:100%;height:auto;min-width:0}
 
 /* Canva embed */
 .brief{max-width:1600px;margin:clamp(3rem,7vw,6rem) auto 0}
@@ -86,25 +99,4 @@ main{padding:0 var(--pad)}
 .split-text{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:3rem var(--pad);text-align:center}
 .split-text h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4vw,3.4rem);line-height:1.1;margin:0;max-width:14ch}
 .split-photo{position:relative;border-left:2px solid var(--ink);overflow:hidden}
-.split-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
-.bolt{position:absolute;left:12%;top:16%;width:clamp(32px,5vw,64px);fill:none;stroke:var(--ink);stroke-width:2.5;z-index:1}
-.about-more{padding:clamp(3rem,7vw,6rem) var(--pad) 0}
-
-/* ---------- Responsive ---------- */
-@media (max-width:900px){
-  .case-intro,
-  .about-body{grid-template-columns:1fr}
-}
-@media (max-width:640px){
-  .grid{grid-template-columns:1fr}
-  .gallery-row{grid-template-columns:1fr}
-  .split{grid-template-columns:1fr}
-  .split-photo{border-left:0;border-top:2px solid var(--ink);aspect-ratio:4/5}
-  .site-header nav ul{gap:1.25rem}
-  .pager{font-size:1.1rem}
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion:reduce){
-  *{transition:none!important}
-}
+.split-photo img{width:100%;height:100%;object-fit:cover;
