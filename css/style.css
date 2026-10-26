@@ -37,9 +37,7 @@ main{padding:0 var(--pad)}
 .pill:hover,
 .site-header nav a.pill:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
-/* ---------- Home ---------- */
-.intro{max-width:24ch;margin:clamp(2.5rem,8vw,6rem) auto clamp(3rem,9vw,7rem);text-align:center;
-  font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;letter-spacing:0}
+/* ---------- Home grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
 .card{display:block}
 .thumb{overflow:hidden;background:#e7e0d0;aspect-ratio:5/4}
@@ -50,6 +48,16 @@ main{padding:0 var(--pad)}
   border-bottom:1px solid transparent;display:inline-block;transition:border-color var(--ease)}
 .card:hover h2{border-color:var(--ink)}
 .card p{margin:.15rem 0 0;color:var(--muted);font-size:.95rem}
+
+.intro{
+  max-width:44ch;
+  margin:clamp(2rem,6vw,4.5rem) auto clamp(2.5rem,7vw,5rem);
+  text-align:center;
+  font-family:var(--display);
+  font-size:clamp(1.15rem,2vw,1.6rem);
+  line-height:1.35;
+  letter-spacing:0;
+}
 
 /* ---------- Case study ---------- */
 .back{display:inline-block;margin:1rem 0 2rem;color:var(--muted);transition:opacity var(--ease)}
@@ -91,12 +99,53 @@ main{padding:0 var(--pad)}
 .pager a{border-bottom:1px solid transparent;transition:border-color var(--ease)}
 .pager a:hover{border-color:var(--ink)}
 
-/* ---------- About page (split layout) ---------- */
-.about-page{padding:.75rem}
-.about-page .site-header{background:var(--panel);border:2px solid var(--ink);border-radius:28px 28px 0 0;padding:1rem clamp(1rem,4vw,3rem)}
-.about-page main{padding:0}
-.split{display:grid;grid-template-columns:1fr 1fr;min-height:min(80vh,46rem);background:var(--panel);border:2px solid var(--ink);border-top:0}
-.split-text{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:3rem var(--pad);text-align:center}
-.split-text h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4vw,3.4rem);line-height:1.1;margin:0;max-width:14ch}
-.split-photo{position:relative;border-left:2px solid var(--ink);overflow:hidden}
-.split-photo img{width:100%;height:100%;object-fit:cover;
+/* ---------- About page ---------- */
+.about-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(2rem,6vw,7rem);
+  align-items:start;
+  margin-top:clamp(1rem,4vw,3rem);
+}
+.about-photo img{width:100%;height:auto}
+.about-text h1{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(2rem,4vw,3.4rem);
+  line-height:1.05;
+  letter-spacing:0;
+  margin:0 0 clamp(1.5rem,3vw,2.5rem);
+}
+.about-text p{
+  margin:0 0 1.25em;
+  font-size:clamp(1rem,1.4vw,1.2rem);
+  line-height:1.55;
+}
+.about-text a{border-bottom:1px solid currentColor;transition:opacity var(--ease)}
+.about-text a:hover{opacity:.7}
+
+.about-skills{
+  margin-top:clamp(1.5rem,3vw,2.5rem);
+  font-size:clamp(1rem,1.4vw,1.2rem);
+  line-height:1.6;
+}
+.about-skills a{border-bottom:1px solid currentColor;transition:opacity var(--ease)}
+.about-skills a:hover{opacity:.7}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .case-intro,
+  .about-body{grid-template-columns:1fr}
+  .about-layout{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .gallery-row{grid-template-columns:minmax(0,1fr)}
+  .site-header nav ul{gap:1.25rem}
+  .pager{font-size:1.1rem}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
